@@ -47,23 +47,37 @@ function BookingCar({ match }) {
 
   
 
-  function onToken(token){
-    const reqObj = {
-        token,
-        user: JSON.parse(localStorage.getItem("user"))._id,
-        car: car._id,
-        totalHours,
-        totalAmount,
-        driverRequired: driver,
-        bookedTimeSlots: {
-          from,
-          to,
-        },
-      };
+  // function onToken(token){
+  //   const reqObj = {
+  //       token,
+  //       user: JSON.parse(localStorage.getItem("user"))._id,
+  //       car: car._id,
+  //       totalHours,
+  //       totalAmount,
+  //       driverRequired: driver,
+  //       bookedTimeSlots: {
+  //         from,
+  //         to,
+  //       },
+  //     };
   
-      dispatch(bookCar(reqObj));
-  }
+  //     dispatch(bookCar(reqObj));
+  // }
 
+  function bookNow(){
+    const reqObj = {
+      user: JSON.parse(localStorage.getItem("user"))._id,
+      car: car._id,
+      totalHours,
+      totalAmount,
+      driverRequired: driver,
+      bookedTimeSlots: {
+        from,
+        to
+      }
+    }
+    dispatch(bookCar(reqObj))
+  }
   return (
     <DefaultLayout>
       {loading && <Spinner />}
@@ -131,7 +145,9 @@ function BookingCar({ match }) {
 
               <h3>Total Amount : {totalAmount}</h3>
 
-              <StripeCheckout
+              <button className="btn1" onClick={bookNow}>Book Now</button>
+
+              {/* <StripeCheckout
                 shippingAddress
                 token={onToken}
                 currency="inr"
@@ -139,7 +155,7 @@ function BookingCar({ match }) {
                 stripeKey="pk_test_51KSD5BSJkuRIjxrtv1gyxvsis8QdRHWBTFBoH4iObgJXUPIjHklQ1nx6GYHkyYTQ4aw9aoZLs4NwZBJ42yRs0uRI001tuhmElH"
               >
                 <button className="btn1">Book Now</button>
-              </StripeCheckout>
+              </StripeCheckout> */}
             </div>
           )}
         </Col>
