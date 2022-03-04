@@ -23,12 +23,12 @@ function DefaultLayout(props) {
         </a>
       </Menu.Item>
       <Menu.Item>
-        <a
+        {/* <a
          
           href="/admin"
         >
           Admin
-        </a>
+        </a> */}
       </Menu.Item>
       <Menu.Item onClick={()=>{
           localStorage.removeItem('user');
